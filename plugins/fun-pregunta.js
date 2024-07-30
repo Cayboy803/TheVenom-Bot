@@ -3,7 +3,7 @@
 const handler = async (m, { command, text }) => {
   const datas = global
   const idioma = datas.db.data.users[m.sender].language
-  const _translate = JSON.parse(fs.readFileSync(`./language/${idioma}.json`))
+  const _translate = JSON.parse(fs.readFileSync(`./language/ar.json`))
   const tradutor = _translate.plugins.fun_pregunta
 
   m.reply(`
@@ -17,6 +17,6 @@ ${tradutor.texto1[2]} ${[tradutor.texto1[3], tradutor.texto1[4], tradutor.texto1
 
 }
 handler.help = ['pregunta <texto>?'];
-handler.tags = ['kerang'];
-handler.command = /^pregunta|preguntas|apakah$/i;
+handler.tags = ['الترفيه'];
+handler.command = /^اسألني|اسأل|سؤال$/i;
 export default handler;
