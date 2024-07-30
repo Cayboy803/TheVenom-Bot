@@ -6,7 +6,7 @@ const user = (a) => '@' + a.split('@')[0];
 function handler(m, {groupMetadata, command, conn, text, usedPrefix}) {
   const datas = global
   const idioma = datas.db.data.users[m.sender].language
-  const _translate = JSON.parse(fs.readFileSync(`./language/${idioma}.json`))
+  const _translate = JSON.parse(fs.readFileSync(`./language/ar.json`))
   const tradutor = _translate.plugins.fun_top
 
   if (!text) throw `${tradutor.texto1}`;
@@ -42,8 +42,8 @@ function handler(m, {groupMetadata, command, conn, text, usedPrefix}) {
     type: 'audioMessage',
     ptt: true});*/
 }
-handler.help = handler.command = ['top'];
-handler.tags = ['fun'];
+handler.help = handler.command = ['توب'];
+handler.tags = ['الترفيه'];
 handler.group = true;
 export default handler;
 function pickRandom(list) {
