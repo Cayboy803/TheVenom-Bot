@@ -4,7 +4,7 @@ import {performance} from 'perf_hooks';
 const handler = async (m, {conn, text}) => {
   const datas = global
   const idioma = datas.db.data.users[m.sender].language
-  const _translate = JSON.parse(fs.readFileSync(`./language/${idioma}.json`))
+  const _translate = JSON.parse(fs.readFileSync(`./language/ar.json`))
   const tradutor = _translate.plugins.fun_doxeo_falso
 
     
@@ -111,8 +111,8 @@ var hawemod = [
 loading()    
 };
 handler.help = ['doxear <nombre> | <@tag>'];
-handler.tags = ['fun'];
-handler.command = /^Doxxeo|doxxeo|doxxear|Doxxear|doxeo|doxear|doxxeame|doxeame/i;
+handler.tags = ['الترفيه'];
+handler.command = /^دوكسيو|doxxeo|doxxear|Doxxear|doxeo|doxear|doxxeame|doxeame/i;
 export default handler;
 
 function getRandomValue(arr) {
