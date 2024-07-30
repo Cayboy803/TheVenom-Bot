@@ -113,7 +113,7 @@ var hawemod = [
  }
 loading()    
 };
-handler.help = ['gay2', 'lesbiana', 'pajero', 'pajera', 'puto', 'puta', 'manco', 'manca', 'rata', 'prostituta', 'prostituto'].map((v) => v + ' @tag | nombre');
+handler.help = ['شاذ', 'شاذه', 'قشه', 'يدوي', 'اظن', 'خارج', 'مفتقد', 'يفتقر', 'مستوي', 'عاهره', 'عاهر'].map((v) => v + ' @tag | nombre');
 handler.tags = ['calculator'];
-handler.command = /^(gay2|lesbiana|pajero|pajera|puto|puta|manco|manca|rata|prostituta|prostituto)$/i;
+handler.command = /^(نسبة_شذوذك|نسبة_حبك_للفتيات|pajero|pajera|puto|puta|manco|manca|rata|prostituta|prostituto)$/i;
 export default handler;
