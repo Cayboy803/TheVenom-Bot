@@ -1,86 +1,57 @@
+import yts from 'yt-search'
+import { youtubedl, youtubedlv2 } from '@bochilteam/scraper-sosmed'
+let handler = async (m, { conn, command, text, usedPrefix }) => {
+  if (!text) throw ` مثال :\n*.شغل* سامي يوسف`
+  let res = await yts(text)
+  let vid = res.videos[0]
+  await conn.sendMessage(m.chat, { react: { text: "⏳",key: m.key,}
+  })  
+  if (!vid) throw 'لم يتم العثور عليه، حاول عكس العنوان والمؤلف'
+  let { title, description, thumbnail, videoId, durationH, viewH, publishedTime } = vid
+  const url = 'https://www.youtube.com/watch?v=' + videoId
+let vap = `*〔 Y O U T U B E P L A Y 〕*
 
-import ytdl from 'ytdl-core';
-import yts from 'yt-search';
-import fs from 'fs';
-import { pipeline } from 'stream';
-import { promisify } from 'util';
-import os from 'os';
+*عنوان المقطع:* ${title}
+*رابط المقطع:* ${url}
+*وصف المقطع:* ${description}
+*تاريخ نشره:* ${publishedTime}
+*مدته:* ${durationH}
+*عدد المشاهدات:* ${viewH}`
 
-const streamPipeline = promisify(pipeline);
+conn.sendMessage(m.chat, {
+text: vap,
+contextInfo: {
+externalAdReply: {
+title: vap,
+thumbnailUrl: thumbnail,
+mediaType: 1,
+renderLargerThumbnail: true
+}}}, { quoted: m}) 
+  const yt = await youtubedl(url).catch(async () => await youtubedlv2(url))
+const link = await yt.audio['128kbps'].download()
+  let doc = { 
+  audio: 
+  { 
+    url: link 
+}, 
+mimetype: 'audio/mp4', fileName: `${title}`, contextInfo: { externalAdReply: { showAdAttribution: true,
+mediaType:  2,
+mediaUrl: url,
+title: title,
+body: "© SILANA",
+sourceUrl: url,
+thumbnail: await(await conn.getFile(thumbnail)).data                                                                     
+                                                                                                                 }
+                       }
+  }
+  return conn.sendMessage(m.chat, doc, { quoted: m })
+}
+handler.help = ['شغل']
+handler.tags = ['التنزيل']
+handler.command = /^شغل$/i
 
-var handler = async (m, { conn, command, text, usedPrefix }) => {
-  if (!text) throw `*${usedPrefix}${command} اية الكرسي*`;
+export default handler
 
-  let search = await yts(text);
-  let vid = search.videos[Math.floor(Math.random() * search.videos.length)];
-  if (!search) throw 'Video Not Found, Try Another Title';
-  let { title, thumbnail, timestamp, views, ago, url } = vid;
-  let wm = 'Downloading audio please wait';
-
-  let captvid = `*❖───┊ ♪ يــوتـــيــوب ♪ ┊───❖*
-  ❏ الـعـنوان: ${title}
-
-  ❐ الـمده: ${timestamp}
-
-  ❑ الــمـشهـدات: ${views}
-
-  ❒ مـنذ: ${ago}
-
-  ❒ الـرابــط: ${url}`;
-
-  conn.sendMessage(m.chat, { image: { url: thumbnail }, caption: captvid, footer: author }, { quoted: m });
-
-
-  const audioStream = ytdl(url, {
-    filter: 'audioonly',
-    quality: 'highestaudio',
-  });
-
-  // Get the path to the system's temporary directory
-  const tmpDir = os.tmpdir();
-
-  // Create writable stream in the temporary directory
-  const writableStream = fs.createWriteStream(`${tmpDir}/${title}.mp3`);
-
-  // Start the download
-  await streamPipeline(audioStream, writableStream);
-
-  let doc = {
-    audio: {
-      url: `${tmpDir}/${title}.mp3`
-    },
-    mimetype: 'audio/mp4',
-    fileName: `${title}`,
-    contextInfo: {
-      externalAdReply: {
-        showAdAttribution: true,
-        mediaType: 2,
-        mediaUrl: url,
-        title: title,
-        body: wm,
-        sourceUrl: url,
-        thumbnail: await (await conn.getFile(thumbnail)).data
-      }
+function pickRandom(list) {
+  return list[Math.floor(list.length * Math.random())]
     }
-  };
-
-  await conn.sendMessage(m.chat, doc, { quoted: m });
-
-  // Delete the audio file
-  fs.unlink(`${tmpDir}/${title}.mp3`, (err) => {
-    if (err) {
-      console.error(`Failed to delete audio file: ${err}`);
-    } else {
-      console.log(`Deleted audio file: ${tmpDir}/${title}.mp3`);
-    }
-  });
-};
-
-handler.help = ['play'].map((v) => v + ' <query>');
-handler.tags = ['downloader'];
-handler.command = /^شغل$/i;
-
-handler.exp = 0;
-handler.diamond = false;
-
-export default handler;
