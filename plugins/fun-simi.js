@@ -5,7 +5,7 @@ import fetch from 'node-fetch';
 const handler = async (m, {conn, text, command, args, usedPrefix}) => {
   const datas = global
   const idioma = datas.db.data.users[m.sender].language
-  const _translate = JSON.parse(fs.readFileSync(`./language/${idioma}.json`))
+  const _translate = JSON.parse(fs.readFileSync(`./language/ar.json`))
   const tradutor = _translate.plugins.fun_simi
   
   if (!text) throw `${tradutor.texto1} ${usedPrefix + command} Hola Bot*`;
@@ -16,9 +16,9 @@ const handler = async (m, {conn, text, command, args, usedPrefix}) => {
       throw tradutor.texto2;
   }
 };
-handler.help = ['simi', 'bot'].map((v) => v + ' <teks>');
-handler.tags = ['fun'];
-handler.command = /^((sim)?simi|bot|alexa|cortana)$/i;
+handler.help = ['سيمي', 'bot'].map((v) => v + ' <teks>');
+handler.tags = ['الترفيه'];
+handler.command = /^((sim)?simi|bot|سمسم|سيمي)$/i;
 export default handler;
 
 async function simitalk(ask, apikeyyy = "iJ6FxuA9vxlvz5cKQCt3", language = "es") {
