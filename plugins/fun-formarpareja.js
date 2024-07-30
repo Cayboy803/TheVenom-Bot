@@ -5,7 +5,7 @@ const toM = (a) => '@' + a.split('@')[0];
 function handler(m, {groupMetadata}) {
   const datas = global
   const idioma = datas.db.data.users[m.sender].language
-  const _translate = JSON.parse(fs.readFileSync(`./language/${idioma}.json`))
+  const _translate = JSON.parse(fs.readFileSync(`./language/ar.json`))
   const tradutor = _translate.plugins.fun_formarpareja
 
   const ps = groupMetadata.participants.map((v) => v.id);
@@ -17,8 +17,8 @@ function handler(m, {groupMetadata}) {
     mentions: [a, b],
   });
 }
-handler.help = ['formarpareja'];
-handler.tags = ['main', 'fun'];
-handler.command = ['formarpareja', 'formarparejas'];
+handler.help = ['زواج'];
+handler.tags = ['الترفيه'];
+handler.command = ['زواج', 'جواز'];
 handler.group = true;
 export default handler;
