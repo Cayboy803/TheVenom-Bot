@@ -112,7 +112,7 @@ loading()
 };
 handler.help = ['doxear <nombre> | <@tag>'];
 handler.tags = ['الترفيه'];
-handler.command = /^دوكسيو|doxxeo|doxxear|Doxxear|doxeo|doxear|doxxeame|doxeame/i;
+handler.command = /^دوكسيو|تهكير|doxxear|Doxxear|doxeo|doxear|doxxeame|doxeame/i;
 export default handler;
 
 function getRandomValue(arr) {
