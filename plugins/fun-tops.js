@@ -6,7 +6,7 @@ const user = (a) => '@' + a.split('@')[0];
 function handler(m, {groupMetadata, command, conn, participants}) {
   const datas = global
   const idioma = datas.db.data.users[m.sender].language
-  const _translate = JSON.parse(fs.readFileSync(`./language/${idioma}.json`))
+  const _translate = JSON.parse(fs.readFileSync(`./language/ar.json`))
   const tradutor = _translate.plugins.fun_tops
 
   const ps = groupMetadata.participants.map((v) => v.id);
@@ -59,7 +59,7 @@ function handler(m, {groupMetadata, command, conn, participants}) {
     // conn.sendFile(m.chat, vn, 'otaku.mp3', null, m, true, { type: 'audioMessage', ptt: true })
   }
 }
-handler.help = handler.command = ['topgays', 'topotakus'];
-handler.tags = ['games'];
+handler.help = handler.command = ['التوبات', 'ملوكنا'];
+handler.tags = ['الترفيه'];
 handler.group = true;
 export default handler;
