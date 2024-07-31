@@ -5,7 +5,7 @@
 const handler = async (m, {args, usedPrefix, command}) => {
   const datas = global
   const idioma = datas.db.data.users[m.sender].language
-  const _translate = JSON.parse(fs.readFileSync(`./language/${idioma}.json`))
+  const _translate = JSON.parse(fs.readFileSync(`./language/ar.json`))
   const tradutor = _translate.plugins.game_slot
 
   const fa = `
@@ -67,9 +67,9 @@ ${x[2]} : ${y[2]} : ${z[2]}
 ────────
 🎰 | ${end}`);
 };
-handler.help = ['slot <apuesta>'];
-handler.tags = ['game'];
-handler.command = ['slot'];
+handler.help = ['سلوت <apuesta>'];
+handler.tags = ['قسم_الالعاب'];
+handler.command = ['سلوت'];
 export default handler;
 
 function msToTime(duration) {
