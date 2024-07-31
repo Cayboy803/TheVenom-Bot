@@ -3,7 +3,7 @@ import MessageType from '@whiskeysockets/baileys';
 const handler = async (m, {conn, usedPrefix, command}) => {
   const datas = global
   const idioma = datas.db.data.users[m.sender].language
-  const _translate = JSON.parse(fs.readFileSync(`./language/${idioma}.json`))
+  const _translate = JSON.parse(fs.readFileSync(`./language/ar.json`))
   const tradutor = _translate.plugins.game_delttt
 
   const room = Object.values(conn.game).find((room) => room.id.startsWith('tictactoe') && [room.game.playerX, room.game.playerO].includes(m.sender));
@@ -11,6 +11,6 @@ const handler = async (m, {conn, usedPrefix, command}) => {
   delete conn.game[room.id];
   await m.reply(tradutor.texto4);
 };
-handler.command = /^(delttt|deltt|delxo|deltictactoe)$/i;
+handler.command = /^(حذف|حذفف|حذف_اكس_او|حذف_تيك_تاك_توي)$/i;
 handler.fail = null;
 export default handler;
