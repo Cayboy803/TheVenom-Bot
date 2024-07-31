@@ -6,7 +6,7 @@ const poin = 1000;
 const handler = async (m, {conn, usedPrefix}) => {
   const datas = global
   const idioma = datas.db.data.users[m.sender].language
-  const _translate = JSON.parse(fs.readFileSync(`./language/${idioma}.json`))
+  const _translate = JSON.parse(fs.readFileSync(`./language/ar.json`))
   const tradutor = _translate.plugins.game_cancion
 
   conn.tebaklagu = conn.tebaklagu ? conn.tebaklagu : {};
@@ -35,8 +35,8 @@ ${tradutor.texto2[6]}`.trim();
   if (!aa) return conn.sendFile(m.chat, json.link_song, 'coba-lagi.mp3', '', m);
 };
 handler.help = ['tebaklagu'];
-handler.tags = ['game'];
-handler.command = /^cancion|canción$/i;
+handler.tags = ['قسم_الالعاب'];
+handler.command = /^cancion|اغنيه$/i;
 export default handler;
 async function fetchJson(url, options) {
   try {
