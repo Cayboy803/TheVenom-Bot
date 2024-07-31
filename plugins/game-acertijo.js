@@ -6,7 +6,7 @@ const poin = 500;
 const handler = async (m, {conn, usedPrefix}) => {
   const datas = global
   const idioma = datas.db.data.users[m.sender].language
-  const _translate = JSON.parse(fs.readFileSync(`./language/${idioma}.json`))
+  const _translate = JSON.parse(fs.readFileSync(`./language/ar.json`))
   const tradutor = _translate.plugins.game_acertijo
 
 
@@ -36,7 +36,7 @@ ${tradutor.texto2[1]} +${poin} Exp
       delete conn.tekateki[id];
     }, timeout)];
 };
-handler.help = ['acertijo'];
-handler.tags = ['game'];
-handler.command = /^(acertijo|acert|pregunta|adivinanza|tekateki)$/i;
+handler.help = ['لغز'];
+handler.tags = ['قسم_الالعاب'];
+handler.command = /^(لغز|acert|pregunta|adivinanza|tekateki)$/i;
 export default handler;
