@@ -5,7 +5,7 @@ let intentos = 0
 let handler = async (m, { conn, text, usedPrefix, command }) => {
     const datas = global
     const idioma = datas.db.data.users[m.sender].language
-    const _translate = JSON.parse(fs.readFileSync(`./language/${idioma}.json`))
+    const _translate = JSON.parse(fs.readFileSync(`./language/ar.json`))
     const tradutor = _translate.plugins.game_sopa_de_letras
 
 
@@ -167,5 +167,5 @@ ${tradutor.texto3[7]}
     }
 }
 
-handler.command = /^(buscarpalabra|sopa|soup|wordsearch|wordfind|spdeletras|spletras|sppalabras|spalabras|spdepalabras)$/i
+handler.command = /^(البحث_عن_الكلمات|بحث|البحث|wordsearch|wordfind|جد_الكلمه|تدقيق|sppalabras|spalabras|spdepalabras)$/i
 export default handler
