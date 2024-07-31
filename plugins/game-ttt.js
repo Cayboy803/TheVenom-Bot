@@ -3,7 +3,7 @@ import TicTacToe from '../lib/tictactoe.js';
 const handler = async (m, {conn, usedPrefix, command, text}) => {
   const datas = global
   const idioma = datas.db.data.users[m.sender].language
-  const _translate = JSON.parse(fs.readFileSync(`./language/${idioma}.json`))
+  const _translate = JSON.parse(fs.readFileSync(`./language/ar.json`))
   const tradutor = _translate.plugins.game_ttt
 
   conn.game = conn.game ? conn.game : {};
@@ -58,5 +58,5 @@ ${tradutor.texto4} @${room.game.currentTurn.split('@')[0]}
     conn.game[room.id] = room;
   }
 };
-handler.command = /^(tictactoe|ttc|ttt|xo)$/i;
+handler.command = /^(تيك*تاك_توي|ttc|اكس_او|xo)$/i;
 export default handler;
