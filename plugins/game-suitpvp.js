@@ -7,7 +7,7 @@ const poin_bot = 200;
 const handler = async (m, { conn, usedPrefix, text }) => {
   const datas = global
   const idioma = datas.db.data.users[m.sender].language
-  const _translate = JSON.parse(fs.readFileSync(`./language/${idioma}.json`))
+  const _translate = JSON.parse(fs.readFileSync(`./language/ar.json`))
   const tradutor = _translate.plugins.game_suitpvp
 
   conn.suit = conn.suit ? conn.suit : {};
@@ -31,7 +31,7 @@ const handler = async (m, { conn, usedPrefix, text }) => {
     }, timeout), poin, poin_lose, poin_bot, timeout,
   };
 };
-handler.command = /^pvp|suit(pvp)?$/i;
+handler.command = /^تحدي_البدل|بدله(pvp)?$/i;
 handler.group = true;
 handler.game = true;
 export default handler;
