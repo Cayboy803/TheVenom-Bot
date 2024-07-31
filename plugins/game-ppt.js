@@ -3,7 +3,7 @@
 const handler = async (m, {conn, text, command, usedPrefix, args}) => {
   const datas = global
   const idioma = datas.db.data.users[m.sender].language
-  const _translate = JSON.parse(fs.readFileSync(`./language/${idioma}.json`))
+  const _translate = JSON.parse(fs.readFileSync(`./language/ar.json`))
   const tradutor = _translate.plugins.game_ppt
 
 // let pp = 'https://www.bighero6challenge.com/images/thumbs/Piedra,-papel-o-tijera-0003318_1584.jpeg'
@@ -70,7 +70,7 @@ const handler = async (m, {conn, text, command, usedPrefix, args}) => {
   }
   global.db.data.users[m.sender].wait = new Date * 1;
 };
-handler.help = ['ppt'];
-handler.tags = ['games'];
-handler.command = /^(ppt)$/i;
+handler.help = ['ب_ب_ت'];
+handler.tags = ['قسم_الالعاب'];
+handler.command = /^(ب_ب_ت)$/i;
 export default handler;
